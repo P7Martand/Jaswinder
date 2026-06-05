@@ -61,7 +61,7 @@ export function App() {
       </header>
 
       <section class="flags">
-        {flags.length === 0 && (
+        {loaded && flags.length === 0 && (
           <p class="empty">No flags yet. Paste some below to get started.</p>
         )}
         {flags.map((f) => (
