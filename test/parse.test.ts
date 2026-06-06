@@ -27,6 +27,12 @@ describe('parseSetItemLines', () => {
     expect(r.failedLines).toEqual([]);
   });
 
+  it('accepts backtick-quoted key and value', () => {
+    const r = parseSetItemLines('localStorage.setItem(`k`, `v`)');
+    expect(r.pairs).toEqual([{ key: 'k', value: 'v' }]);
+    expect(r.failedLines).toEqual([]);
+  });
+
   it('reports unparseable lines while keeping the good ones', () => {
     const input = ["localStorage.setItem('good', '1')", 'this is not a flag'].join('\n');
     const r = parseSetItemLines(input);
